@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Roma Simple</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
+    .boton {
+      padding: 10px;
+      border: none;
+      border-radius: 50px;
+      color: #fff;
+      background-color: #1a73e8;
+      width: 100px;
+      cursor: pointer;
+    }
+    .creditos {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <h2 id="pregunta"></h2>
+  <input id="respuesta">
+  <button  class="boton" onclick="verificar()">Aceptar</button>
+  <div id="resultado"></div>
+  <div class="creditos">
+    <h4>Hecho por Lorenzo Delgado González</h4>
+  </div>
+  <ul>
+    <li>!!AVISO PUEDE HABER ERRORES¡¡</li>
+  </ul>
+  <script>
+    const preguntas = [
+      ["¿Dónde se sitúa Roma?", "peninsula italica"],
+      ["¿Qué mar rodeaba al Imperio Romano?", "mar mediterraneo"],
+      ["¿Cuáles fueron las tres etapas de la historia de Roma?", "monarquia, republica e imperio"],
+      ["¿Quién fue el primer emperador de Roma?","augusto"],
+      ["¿Cómo se llamaba el sistema de gobierno en el que mandaba un emperador?", "imperio"],
+      ["¿Qué pasó con el Imperio romano en el siglo V?", "cayó"],
+      ["Nombra dos grupos sociales romanos.", "patricios y plebeyos"],
+      ["¿Qué era el pater familias?", "el jefe de la familia"],
+      ["¿Qué papel tenían las mujeres en Roma?", "cuidar la casa y los hijos"],
+      ["¿Cómo se llamaba el lugar donde vivían los ricos?", "domus"],
+      ["¿Cómo se llamaba el edificio donde vivían los pobres?", "insulae"],
+      ["¿Qué era el foro en Roma?", "el centro de la ciudad"]
+    ];
+    let i = 0;
+    mostrar();
+
+    function mostrar() {
+      document.getElementById("pregunta").textContent = preguntas[i][0];
+      document.getElementById("respuesta").value = "";
+      document.getElementById("resultado").textContent = "";
+    }
+
+    function verificar() {
+      let r = document.getElementById("respuesta").value.trim().toLowerCase();
+      if (r === preguntas[i][1]) {
+        document.getElementById("resultado").textContent = "CORRECTO";
+      } else {
+        document.getElementById("resultado").textContent = "INCORRECTO. Respuesta: " + preguntas[i][1];
+      }
+      setTimeout(() => {
+        i++;
+        if(i < preguntas.length) {
+          mostrar();
+        } else {
+          document.body.innerHTML = "<h2>¡Quiz terminado!</h2>";
+        }
+      }, 1200);
+    }
+  </script>
+</body>
+</html>
